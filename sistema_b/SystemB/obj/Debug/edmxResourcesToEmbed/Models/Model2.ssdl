@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="System_BModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'System_B.dbo.V_Crimenes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="V_Crimenes">
+    <Key>
+      <PropertyRef Name="first_name" />
+      <PropertyRef Name="last_name" />
+      <PropertyRef Name="date_of_capture" />
+      <PropertyRef Name="crime" />
+    </Key>
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dpi" Type="nvarchar" MaxLength="30" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="date_of_capture" Type="date" Nullable="false" />
+    <Property Name="crime" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityContainer Name="System_BModel3StoreContainer">
+    <EntitySet Name="V_Crimenes" EntityType="Self.V_Crimenes" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_Crimenes].[first_name] AS [first_name], 
+    [V_Crimenes].[last_name] AS [last_name], 
+    [V_Crimenes].[dpi] AS [dpi], 
+    [V_Crimenes].[Birthday] AS [Birthday], 
+    [V_Crimenes].[date_of_capture] AS [date_of_capture], 
+    [V_Crimenes].[crime] AS [crime], 
+    [V_Crimenes].[description] AS [description]
+    FROM [dbo].[V_Crimenes] AS [V_Crimenes]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

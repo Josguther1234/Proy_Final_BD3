@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="System_BModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AGENT">
+    <Key>
+      <PropertyRef Name="id_agent" />
+    </Key>
+    <Property Name="id_agent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Person_agent" Type="Int32" Nullable="false" />
+    <Property Name="hiredate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="job" Type="Int32" Nullable="false" />
+    <Property Name="id_police_station" Type="Int32" Nullable="false" />
+    <Property Name="job_phone_number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PERSON" Relationship="Self.FK_agent_person" FromRole="AGENT" ToRole="PERSON" />
+    <NavigationProperty Name="police_station" Relationship="Self.FK_agent_police_station" FromRole="AGENT" ToRole="police_station" />
+    <NavigationProperty Name="ARRESTED" Relationship="Self.FK_arrested_agent" FromRole="AGENT" ToRole="ARRESTED" />
+  </EntityType>
+  <EntityType Name="ARRESTED">
+    <Key>
+      <PropertyRef Name="id_arrested" />
+    </Key>
+    <Property Name="id_arrested" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Person_arrested" Type="Int32" Nullable="false" />
+    <Property Name="date_of_capture" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_crime" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_police_station" Type="Int32" Nullable="false" />
+    <Property Name="id_agent" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AGENT" Relationship="Self.FK_arrested_agent" FromRole="ARRESTED" ToRole="AGENT" />
+    <NavigationProperty Name="CRIME" Relationship="Self.FK_arrested_crime" FromRole="ARRESTED" ToRole="CRIME" />
+    <NavigationProperty Name="PERSON" Relationship="Self.FK_arrested_person" FromRole="ARRESTED" ToRole="PERSON" />
+    <NavigationProperty Name="police_station" Relationship="Self.FK_arrested_police_station" FromRole="ARRESTED" ToRole="police_station" />
+    <NavigationProperty Name="FAMILY" Relationship="Self.FK_family_arrested" FromRole="ARRESTED" ToRole="FAMILY" />
+  </EntityType>
+  <EntityType Name="CONTACT">
+    <Key>
+      <PropertyRef Name="id_contact" />
+    </Key>
+    <Property Name="id_contact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_person_contact" Type="Int32" Nullable="false" />
+    <Property Name="type_of_relationship" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id__agent_contact" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PERSON" Relationship="Self.FK_contact_person" FromRole="CONTACT" ToRole="PERSON" />
+  </EntityType>
+  <EntityType Name="CRIME">
+    <Key>
+      <PropertyRef Name="id_crime" />
+    </Key>
+    <Property Name="id_crime" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="crime_type" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fine" Type="Double" Nullable="false" />
+    <Property Name="days_of_conviction" Type="Double" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ARRESTED" Relationship="Self.FK_arrested_crime" FromRole="CRIME" ToRole="ARRESTED" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="id_departament" />
+    </Key>
+    <Property Name="id_departament" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERSON">
+    <Key>
+      <PropertyRef Name="id_person" />
+    </Key>
+    <Property Name="id_person" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dpi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="id_department" Type="Int32" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="notele" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AGENT" Relationship="Self.FK_agent_person" FromRole="PERSON" ToRole="AGENT" />
+    <NavigationProperty Name="ARRESTED" Relationship="Self.FK_arrested_person" FromRole="PERSON" ToRole="ARRESTED" />
+    <NavigationProperty Name="CONTACT" Relationship="Self.FK_contact_person" FromRole="PERSON" ToRole="CONTACT" />
+    <NavigationProperty Name="FAMILY" Relationship="Self.FK_family_person" FromRole="PERSON" ToRole="FAMILY" />
+  </EntityType>
+  <EntityType Name="police_station">
+    <Key>
+      <PropertyRef Name="id_police_station" />
+    </Key>
+    <Property Name="id_police_station" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="direction" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AGENT" Relationship="Self.FK_agent_police_station" FromRole="police_station" ToRole="AGENT" />
+    <NavigationProperty Name="ARRESTED" Relationship="Self.FK_arrested_police_station" FromRole="police_station" ToRole="ARRESTED" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="FAMILY">
+    <Key>
+      <PropertyRef Name="id_family" />
+      <PropertyRef Name="id_Person" />
+      <PropertyRef Name="Tiporelacion" />
+      <PropertyRef Name="id_arrested" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="id_family" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Person" Type="Int32" Nullable="false" />
+    <Property Name="Tiporelacion" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_arrested" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ARRESTED" Relationship="Self.FK_family_arrested" FromRole="FAMILY" ToRole="ARRESTED" />
+    <NavigationProperty Name="PERSON" Relationship="Self.FK_family_person" FromRole="FAMILY" ToRole="PERSON" />
+  </EntityType>
+  <Association Name="FK_agent_person">
+    <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+    <End Role="AGENT" Type="Self.AGENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="id_person" />
+      </Principal>
+      <Dependent Role="AGENT">
+        <PropertyRef Name="id_Person_agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_agent_police_station">
+    <End Role="police_station" Type="Self.police_station" Multiplicity="1" />
+    <End Role="AGENT" Type="Self.AGENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="police_station">
+        <PropertyRef Name="id_police_station" />
+      </Principal>
+      <Dependent Role="AGENT">
+        <PropertyRef Name="id_police_station" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_arrested_agent">
+    <End Role="AGENT" Type="Self.AGENT" Multiplicity="1" />
+    <End Role="ARRESTED" Type="Self.ARRESTED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AGENT">
+        <PropertyRef Name="id_agent" />
+      </Principal>
+      <Dependent Role="ARRESTED">
+        <PropertyRef Name="id_agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_arrested_crime">
+    <End Role="CRIME" Type="Self.CRIME" Multiplicity="1" />
+    <End Role="ARRESTED" Type="Self.ARRESTED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CRIME">
+        <PropertyRef Name="id_crime" />
+      </Principal>
+      <Dependent Role="ARRESTED">
+        <PropertyRef Name="id_crime" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_arrested_person">
+    <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+    <End Role="ARRESTED" Type="Self.ARRESTED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="id_person" />
+      </Principal>
+      <Dependent Role="ARRESTED">
+        <PropertyRef Name="id_Person_arrested" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_arrested_police_station">
+    <End Role="police_station" Type="Self.police_station" Multiplicity="1" />
+    <End Role="ARRESTED" Type="Self.ARRESTED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="police_station">
+        <PropertyRef Name="id_police_station" />
+      </Principal>
+      <Dependent Role="ARRESTED">
+        <PropertyRef Name="id_police_station" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_family_arrested">
+    <End Role="ARRESTED" Type="Self.ARRESTED" Multiplicity="1" />
+    <End Role="FAMILY" Type="Self.FAMILY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARRESTED">
+        <PropertyRef Name="id_arrested" />
+      </Principal>
+      <Dependent Role="FAMILY">
+        <PropertyRef Name="id_arrested" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contact_person">
+    <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+    <End Role="CONTACT" Type="Self.CONTACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="id_person" />
+      </Principal>
+      <Dependent Role="CONTACT">
+        <PropertyRef Name="id_person_contact" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_family_person">
+    <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+    <End Role="FAMILY" Type="Self.FAMILY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERSON">
+        <PropertyRef Name="id_person" />
+      </Principal>
+      <Dependent Role="FAMILY">
+        <PropertyRef Name="id_Person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="System_BEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AGENT" EntityType="Self.AGENT" />
+    <EntitySet Name="ARRESTED" EntityType="Self.ARRESTED" />
+    <EntitySet Name="CONTACT" EntityType="Self.CONTACT" />
+    <EntitySet Name="CRIME" EntityType="Self.CRIME" />
+    <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" />
+    <EntitySet Name="PERSON" EntityType="Self.PERSON" />
+    <EntitySet Name="police_station" EntityType="Self.police_station" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="FAMILY" EntityType="Self.FAMILY" />
+    <AssociationSet Name="FK_agent_person" Association="Self.FK_agent_person">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="AGENT" EntitySet="AGENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_agent_police_station" Association="Self.FK_agent_police_station">
+      <End Role="police_station" EntitySet="police_station" />
+      <End Role="AGENT" EntitySet="AGENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_arrested_agent" Association="Self.FK_arrested_agent">
+      <End Role="AGENT" EntitySet="AGENT" />
+      <End Role="ARRESTED" EntitySet="ARRESTED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_arrested_crime" Association="Self.FK_arrested_crime">
+      <End Role="CRIME" EntitySet="CRIME" />
+      <End Role="ARRESTED" EntitySet="ARRESTED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_arrested_person" Association="Self.FK_arrested_person">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="ARRESTED" EntitySet="ARRESTED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_arrested_police_station" Association="Self.FK_arrested_police_station">
+      <End Role="police_station" EntitySet="police_station" />
+      <End Role="ARRESTED" EntitySet="ARRESTED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_family_arrested" Association="Self.FK_family_arrested">
+      <End Role="ARRESTED" EntitySet="ARRESTED" />
+      <End Role="FAMILY" EntitySet="FAMILY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contact_person" Association="Self.FK_contact_person">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="CONTACT" EntitySet="CONTACT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_family_person" Association="Self.FK_family_person">
+      <End Role="PERSON" EntitySet="PERSON" />
+      <End Role="FAMILY" EntitySet="FAMILY" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

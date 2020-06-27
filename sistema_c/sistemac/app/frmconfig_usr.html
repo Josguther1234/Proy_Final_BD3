@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es-GT">
+    <head>
+        <title>Mantenimiento de Usuarios</title>
+        <meta charset="UTF-8">
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/fontawesome-all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/custom.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="row container-fluid col-12">
+            <div class="container col-12" id="divMenu"
+                 style="width: 100%!important; margin: 10px auto 10px auto!important; 
+                 justify-content: space-between; display: flex;" >
+                <button class="btn btn-primary" 
+                        style="flex-basis: 14%; height: 30pt; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex: 1;" 
+                        id="btnAdd" type="button">
+                    <i class="fa fa-plus"></i>&nbsp;&nbsp;<span style="text-decoration: underline; font-weight: bold;">A</span>gregar
+                </button>
+                <button class="btn btn-primary" 
+                        style="flex-basis: 14%; height: 30pt; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex: 1;" 
+                        id="btnSave" type="button">
+                    <i class="fa fa-save"></i>&nbsp;&nbsp;<span style="text-decoration: underline; font-weight: bold;">G</span>uardar
+                </button>
+                <button class="btn btn-primary" 
+                        style="flex-basis: 14%; height: 30pt; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex:1;" 
+                        id="btnDel" type="button">
+                    <i class="fa fa-eraser"></i>&nbsp;&nbsp;Eli<span style="text-decoration: underline; font-weight: bold;">M</span>inar
+                </button>
+                <button class="btn btn-primary" 
+                        style="flex-basis: 14%; height: 30pt; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex: 1;" 
+                        id="btnCancel" type="button">
+                    <i class="fa fa-window-close"></i>&nbsp;&nbsp;Cancelar&nbsp;<span style="text-decoration: underline; font-weight: bold;">[ESC]</span>
+                </button>
+                <button class="btn btn-primary" 
+                        style="flex-basis: 14%; height: 30pt; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex: 1;" 
+                        id="btnList" type="button">
+                    <i class="fa fa-print"></i>&nbsp;&nbsp;<span style="text-decoration: underline; font-weight: bold;">L</span>istado
+                </button>
+                <button class="btn btn-primary" 
+                        style="flex-basis: 14%; height: 30pt; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex: 1;" 
+                        id="btnQuit" type="button">
+                    <i class="fa fa-window-close"></i>&nbsp;&nbsp;Cerrar <span style="text-decoration: underline; font-weight: bold;">Q</span>
+                </button>
+            </div><!-- divMenu -->
+        </div>
+        <div id="divData" class="container col-12">
+            <table id="tabData" class="table table-striped" 
+                   style="cursor: pointer; font-size: 9pt; width:100%!important;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="">ID</th>
+                        <th class="">Cuenta</th>
+                        <th class="">Nombre</th>
+                        <th class="">Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div id="divFrm" class="container form-inline col-12" 
+            style="width: 100%!important; margin: auto; display:block; font-size: 9pt; display: flex; flex-direction: row; align-items: stretch;">
+            <input type="hidden" id="txtAct"/>
+            <div class="form-group" style="flex: 1; flex-basis: 80%;">
+                <div class="input-group col-2">
+                    <label class="label" for="txtID">ID:</label>
+                    <input type="text" class="form-control-sm" id="txtID" style="font-size: 9pt; width: 100%;" readonly="readonly"/>
+                </div>
+                <div class="input-group col-5">
+                    <label class="label" for="txtRol">Tipo de Usuario:</label>
+                    <select class="form-control-sm" id="txtRol" style="font-size: 9pt; width: 100%;">
+                        <option value=""></option>
+                        <option value="A">Administrador</option>
+                        <option value="O">Operador</option>
+                        <option value="Q">Consultas</option>
+                        <option value="W">Web Service</option>
+                    </select>
+                </div>
+                <div class="input-group col-4">
+                    <label class="label" for="txtCta">Cuenta:</label>
+                    <input type="text" class="form-control-sm txtimp excp" id="txtCta" style="font-size: 9pt; width: 90%;" maxlength="15"/>
+                </div>
+                <div class="input-group col-7">
+                    <label class="label" for="txtNom">Nombre Completo:</label>
+                    <input type="text" class="form-control-sm txtimp" id="txtNom" style="font-size: 9pt; width: 90%;"/>
+                </div>
+            </div>
+            <div id="divAdditional" style="display: flex; flex-direction: column; flex: 1; flex-basis: 20%; justify-content: space-between;">
+                <button class="btn btn-primary" 
+                        style="flex: 1; height: 30pt; max-height: 40px; font-size: 9pt; font-weight: bold; border-radius: 6pt; 
+                        flex: 1; padding: 15px auto 15px auto;" 
+                        id="btnPwd" type="button">
+                    <i class="fa fa-key"></i>&nbsp;&nbsp;<span style="text-decoration: underline; font-weight: bold;">P</span>assword
+                </button>
+            </div>
+        </div>
+        <div id="divFrmPwd" class="container form-inline col-12" 
+            style="width: 100%!important; margin: auto; display:block; font-size: 9pt; display: flex; flex-direction: row; margin-top: 15px;">
+            <div class="container" style="flex: 1; display: flex; flex-direction: row;">
+                <div class="input-group-sm" style="flex:1; align-content: center; flex-direction: column; flex-basis: 90%;">
+                    <label class="label" for="txtPwd">Password (Clave):</label>
+                    <input id="txtPwd" type="password" class="form-control-sm txtimp"/>
+                </div>
+                <div class="input-group-sm" style="flex:1; align-content: center;">
+                    <label class="label" for="txtConf">Confirmar Clave:</label>
+                    <input id="txtConf" type="password" class="form-control-sm txtimp"/>                
+                </div>
+            </div>
+            <div class="container btn-group-vertical" style="flex: 1; display: flex; flex-direction: column; flex-basis: 10%;">
+                <button id="btnPwdOk" type="button" class="btn btn-sm btn-success">
+                    <i class="fa fa-check"></i>&nbsp;&nbsp;Actualizar Clave
+                </button>
+                <button id="btnPwdOut" type="button" class="btn btn-sm btn-danger">
+                    <i class="fa fa-times"></i>&nbsp;&nbsp;Cancelar Cambio
+                </button>
+            </div>
+        </div>
+        <script src="../js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/fontawesome.min.js" type="text/javascript"></script>
+        <script src="../js/solid.min.js" type="text/javascript"></script>
+        <script src="../js/cust_frmcfgusr.js" type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="System_BModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="System_BEntities1" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="Devuelve" ReturnType="Collection(System_BModel1.Devuelve_Result)" />
+  </EntityContainer>
+  <ComplexType Name="Devuelve_Result">
+    <Property Type="Int32" Name="id_person" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="dpi" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="Birthday" Nullable="true" />
+    <Property Type="Int32" Name="id_department" Nullable="false" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="notele" Nullable="true" MaxLength="25" />
+    <Property Type="Boolean" Name="status" Nullable="false" />
+  </ComplexType>
+</Schema>

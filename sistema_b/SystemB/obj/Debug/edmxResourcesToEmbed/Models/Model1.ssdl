@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="System_BModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'System_B.dbo.vistaRequerida' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vistaRequerida">
+    <Key>
+      <PropertyRef Name="first_name" />
+      <PropertyRef Name="last_name" />
+      <PropertyRef Name="id_department" />
+      <PropertyRef Name="status" />
+    </Key>
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dpi" Type="nvarchar" MaxLength="30" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="id_department" Type="int" Nullable="false" />
+    <Property Name="direccion" Type="nvarchar" MaxLength="100" />
+    <Property Name="notele" Type="varchar" MaxLength="25" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="System_BModel2StoreContainer">
+    <EntitySet Name="vistaRequerida" EntityType="Self.vistaRequerida" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vistaRequerida].[first_name] AS [first_name], 
+    [vistaRequerida].[last_name] AS [last_name], 
+    [vistaRequerida].[dpi] AS [dpi], 
+    [vistaRequerida].[Birthday] AS [Birthday], 
+    [vistaRequerida].[id_department] AS [id_department], 
+    [vistaRequerida].[direccion] AS [direccion], 
+    [vistaRequerida].[notele] AS [notele], 
+    [vistaRequerida].[status] AS [status]
+    FROM [dbo].[vistaRequerida] AS [vistaRequerida]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

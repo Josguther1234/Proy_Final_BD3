@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="System_BModel3StoreContainer" CdmEntityContainer="System_BEntities3">
+    <EntitySetMapping Name="V_Crimenes">
+      <EntityTypeMapping TypeName="System_BModel3.V_Crimenes">
+        <MappingFragment StoreEntitySet="V_Crimenes">
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="dpi" ColumnName="dpi" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="date_of_capture" ColumnName="date_of_capture" />
+          <ScalarProperty Name="crime" ColumnName="crime" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
